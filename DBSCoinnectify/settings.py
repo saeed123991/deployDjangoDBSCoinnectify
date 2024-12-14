@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-
+#
 INSTANCE_DIR = BASE_DIR / 'instance'
 
 if not INSTANCE_DIR.exists():
