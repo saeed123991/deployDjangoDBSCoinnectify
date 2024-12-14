@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Cryptocurrency Converter" />
+        <meta name="author" content="Your Name" />
+        <title>Cryptocurrency Converter</title>
+        <link rel="icon" href="https://www.dbs.ie/images/default-source/logos/dbs-logo-2019-small.png?sfvrsn=ff5c6eea_2" type="image/icon type">
+        <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-gradient-to-br from-slate-50 via-gray-100 to-slate-100 text-gray-700">
+        <header class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 text-white shadow-lg py-4">
+            <div class="container mx-auto px-4">
+                {% include 'core/navbar.html' %}
+            </div>
+        </header>
+        <div class="w-full max-w-md mx-auto mt-10 bg-gradient-to-r from-indigo-200 via-purple-300 to-pink-200 rounded-lg shadow-lg p-8">
+            {% include 'core/messages.html' %}
+            <h1 class="font-mono font-bold text-3xl text-center pb-5 pt-10 text-gray-800">Cryptocurrency Converter</h1>
+            <form method="POST" id="conversionForm" class="space-y-6">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="crypto" class="block text-sm font-semibold text-gray-700">Cryptocurrency</label>
+                    <input type="text" id="crypto" name="crypto" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., bitcoin" required>
+                </div>
+                <div class="mb-4">
+                    <label for="currency" class="block text-sm font-semibold text-gray-700">Fiat Currency</label>
+                    <select id="currency" name="currency" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        <option value="usd">United States Dollar</option>
+                    <option value="eur">European Euro</option>
+                    <option value="gbp">British Pound</option>
+                    <option value="inr">Indian Rupee</option>
+                    <option value="aud">Australian Dollar</option>
+                    <option value="cad">Canadian Dollar</option>
+                    <option value="jpy">Japanese Yen</option>
+                    <option value="cny">Chinese Yuan</option>
+                    <option value="krw">South Korean Won</option>
+                    <option value="chf">Swiss Franc</option>
+                    <option value="mxn">Mexican Peso</option>
+                    <option value="brl">Brazilian Real</option>
+                    <option value="rub">Russian Ruble</option>
+                    <option value="zar">South African Rand</option>
+                    <option value="try">Turkish Lira</option>
+                    <option value="sgd">Singapore Dollar</option>
+                    <option value="hkd">Hong Kong Dollar</option>
+                    <option value="sek">Swedish Krona</option>
+                    <option value="nok">Norwegian Krone</option>
+                    <option value="dkk">Danish Krone</option>
+                    <option value="pln">Polish Zloty</option>
+                    <option value="idr">Indonesian Rupiah</option>
+                    <option value="myr">Malaysian Ringgit</option>
+                    <option value="thb">Thai Baht</option>
+                    <option value="php">Philippine Peso</option>
+                    <option value="vnd">Vietnamese Dong</option>
+                    <option value="sar">Saudi Riyal</option>
+                    <option value="aed">UAE Dirham</option>
+                    <option value="kwd">Kuwaiti Dinar</option>
+                    <option value="egp">Egyptian Pound</option>
+                    <option value="qar">Qatari Riyal</option>
+                    <option value="omr">Omani Rial</option>
+                    <option value="jod">Jordanian Dinar</option>
+                    <option value="mad">Moroccan Dirham</option>
+                    <option value="tnd">Tunisian Dinar</option>
+                    <option value="cop">Colombian Peso</option>
+                    <option value="clp">Chilean Peso</option>
+                    <option value="pen">Peruvian Nuevo Sol</option>
+                    <option value="gtq">Guatemalan Quetzal</option>
+                    <option value="crc">Costa Rican Colón</option>
+                    <option value="hnl">Honduran Lempira</option>
+                    <option value="nzd">New Zealand Dollar</option>
+                    <option value="bgn">Bulgarian Lev</option>
+                    <option value="ron">Romanian Leu</option>
+                    <option value="czk">Czech Koruna</option>
+                    <option value="hrk">Croatian Kuna</option>
+                    <option value="huf">Hungarian Forint</option>
+                    <option value="npr">Nepalese Rupee</option>
+                    <option value="bdt">Bangladeshi Taka</option>
+                    <option value="lsl">Lesotho Loti</option>
+                    <option value="sbd">Solomon Islands Dollar</option>
+                    <option value="fjd">Fijian Dollar</option>
+                    <option value="bmd">Bermudian Dollar</option>
+                    <option value="gyd">Guyanaese Dollar</option>
+                    <option value="scr">Seychelles Rupee</option>
+                    <option value="wst">Samoan Tala</option>
+                    <option value="xof">CFA Franc</option>
+                    <option value="mop">Macanese Pataca</option>
+                    <option value="kzt">Kazakhstani Tenge</option>
+                    <option value="azn">Azerbaijani Manat</option>
+                    <option value="amd">Armenian Dram</option>
+                    <option value="gel">Georgian Lari</option>
+                    <option value="byr">Belarusian Ruble</option>
+                    <option value="uzs">Uzbekistani Som</option>
+                    <option value="lkr">Sri Lankan Rupee</option>
+                    <option value="mmk">Myanmar Kyat</option>
+                    <option value="vnd">Vietnamese Dong</option>
+                    <option value="lao">Laotian Kip</option>
+                    <option value="bwp">Botswana Pula</option>
+                    <option value="ugx">Ugandan Shilling</option>
+                    <option value="tzs">Tanzanian Shilling</option>
+                    <option value="zwd">Zimbabwean Dollar</option>
+                    <option value="mzn">Mozambican Metical</option>
+                    <option value="gmd">Gambian Dalasi</option>
+                    <option value="syp">Syrian Pound</option>
+                    <option value="kes">Kenyan Shilling</option>
+                    <option value="dzd">Algerian Dinar</option>
+                    <option value="lyd">Libyan Dinar</option>
+                    <option value="sdg">Sudanese Pound</option>
+                    <option value="rwf">Rwandan Franc</option>
+                    <option value="mru">Mauritanian Ouguiya</option>
+                    <option value="jmd">Jamaican Dollar</option>
+                    <option value="btn">Bhutanese Ngultrum</option>
+                    <option value="khr">Cambodian Riel</option>
+                    <option value="pyg">Paraguayan Guarani</option>
+                    <option value="pkr">Pakistani Rupee</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-indigo-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Convert
+                    </button>
+                </div>
+            </form>
+            <div id="conversionResult" class="mt-6 text-center text-lg font-medium hidden bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg"></div>
+        </div>
+        {% include 'core/footer.html' %}
+        <!-- Link to the external JavaScript file -->
+        <script src="{% static 'api.js' %}"></script>
+    </body>
+</html>

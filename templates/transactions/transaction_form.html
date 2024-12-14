@@ -1,0 +1,91 @@
+{% extends 'core/base.html' %}
+
+{% block head_title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div
+    class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24 bg-gradient-to-r from-indigo-200 via-purple-300 to-pink-200 py-12 px-6 rounded-lg shadow-lg">
+    <div class="w-full">
+        <h1 class="font-mono font-bold text-3xl text-center pb-5 pt-10 text-gray-800">{{ title }}</h1>
+        <hr class="border-t-2 border-gray-300" />
+        <div class="w-full mt-5">
+            <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                {% csrf_token %}
+
+                <!-- Amount Input -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="amount">
+                        Amount
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight border rounded-md border-gray-500 focus:outline-none focus:shadow-outline"
+                        name="amount" id="amount" type="number" required placeholder="Amount">
+                </div>
+                {% if form.amount.errors %}
+                {% for error in form.amount.errors %}
+                <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
+                {% endfor %}
+                {% endif %}
+
+                {% if title == 'Deposit Crypto Token (s) to Your Account' %}
+                <!-- Secret Key Input -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="secret_key">
+                        Secret Key
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight border rounded-md border-gray-500 focus:outline-none focus:shadow-outline"
+                        name="secret_key" id="secret_key" type="password" required placeholder="Enter your secret key">
+                </div>
+                {% if form.secret_key.errors %}
+                {% for error in form.secret_key.errors %}
+                <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
+                {% endfor %}
+                {% endif %}
+                {% endif %}
+
+                {% if title == 'Withdraw Crypto Token (s) from Your Account' %}
+                <!-- Wallet Address Input -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="wallet_address">
+                        Wallet Address
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight border rounded-md border-gray-500 focus:outline-none focus:shadow-outline" name="wallet_address" id="wallet_address" type="text" required placeholder="Enter Wallet Address">
+                </div>
+                {% if form.wallet_address.errors %}
+                    {% for error in form.wallet_address.errors %}
+                        <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            
+
+                <!-- Payment Method Selection -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="method">
+                        Payment Method
+                    </label>
+                    <select
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight border rounded-md border-gray-500 focus:outline-none focus:shadow-outline"
+                        name="method" id="method" required>
+                        <option value="TRC20">TRC20</option>
+                        <option value="BNB Smart Chain">BNB Smart Chain</option>
+                    </select>
+                </div>
+                {% if form.method.errors %}
+                {% for error in form.method.errors %}
+                <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
+                {% endfor %}
+                {% endif %}
+
+                <!-- Submit Button -->
+                <button
+                    class="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
